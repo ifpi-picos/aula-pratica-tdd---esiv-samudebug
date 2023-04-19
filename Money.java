@@ -1,4 +1,4 @@
-abstract class Money {
+class Money {
     protected int amount;
     protected String currency;
 
@@ -12,15 +12,17 @@ abstract class Money {
         return amount == money.amount && getClass().equals(money.getClass());
     }
 
-    static Dollar dollar(int amount) {
-        return new Dollar(amount, "USD");
+    static Money dollar(int amount) {
+        return new Money(amount, "USD");
     }
 
-    static Franc franc(int amount) {
-        return new Franc(amount, "CHF");
+    static Money franc(int amount) {
+        return new Money(amount, "CHF");
     }
 
-    abstract Money times(int multiplier);
+    Money times(int multiplier) {
+        return new Money(amount * multiplier, currency);
+    };
 
     String currency() {
         return currency;
